@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Diagnosis App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+        .steps {
+            margin-top: 10px;
+            padding: 10px;
+            background: #d1ecf1;
+            border-radius: 5px;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Medical Diagnosis App</h1>
+        <form id="diagnosisForm">
+            <input type="text" id="symptoms" placeholder="Enter your symptoms" required>
+            <input type="submit" value="Diagnose">
+        </form>
+        <div class="result" id="result"></div>
+        <div class="steps" id="steps"></div>
+    </div>
+
+    <script>
+        document.getElementById('diagnosisForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const symptoms = document.getElementById('symptoms').value.toLowerCase();
+            let diagnosis = '';
+            let steps = '';
+
+            if (symptoms.includes('fever') && symptoms.includes('cough')) {
+                diagnosis = 'You might have the flu. Please consult a doctor.';
+                steps = '1. Rest and stay hydrated.\n2. Monitor your temperature.\n3. Take over-the-counter medications for relief.';
+            } else if (symptoms.includes('headache') && symptoms.includes('nausea')) {
+                diagnosis = 'You might be experiencing a migraine. Please consult a doctor.';
+                steps = '1. Find a dark, quiet place to rest.\n2. Apply a cold compress to your forehead.\n3. Stay hydrated and avoid triggers.';
+            } else if (symptoms.includes('sore throat')) {
+                diagnosis = 'You might have a throat infection. Please consult a doctor.';
+                steps = '1. Gargle with warm salt water.\n2. Stay hydrated and rest your voice.\n3. Consider throat lozenges for relief.';
+            } else {
+                diagnosis = 'Symptoms not recognized. Please consult a healthcare professional.';
+                steps = '1. Keep a record of your symptoms.\n2. Seek medical advice if symptoms persist.';
+            }
+
+            document.getElementById('result').innerText = diagnosis;
+            document.getElementById('steps').innerText = steps;
+        });
+    </script>
+</body>
+</html>
